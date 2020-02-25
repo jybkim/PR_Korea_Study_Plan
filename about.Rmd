@@ -1,0 +1,17 @@
+---
+title: "About"
+author: "Brian Kim"
+date: "25/02/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Link to Repo
+
+<<https://github.com/jybkim/final-project-1.git>>
+
+## About the Project
+
