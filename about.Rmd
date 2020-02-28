@@ -11,7 +11,29 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Link to Repo
 
-<<https://github.com/jybkim/final-project-1.git>>
+<https://github.com/jybkim/final-project-1.git>
 
 ## About the Project
 
+[Data Source](https://sites.google.com/site/knemoto1978/NA%20Elections%201988-2016.xlsx?attredirects=0): <https://sites.google.com/site/knemoto1978/kuniakinemotodata>
+
+*Data on 1988-2016 Parliamentary Elections in South Korea*
+*from Kuniaki Nemoto, Assistant Professor of Political Science at* 
+*Musashi University* 
+
+
+### About the Dataset
+
+The dataset includes every single parliamentary election data from 1988 to 2016, which is held every four years. Given the Korean legislative election's mixed-member system, this dataset includes both the district-level seat vote counts and vote share of the winning parties (on a regional level) and proportional-representation vote counts and vote shares (on a national level) and other (possibly) relevant data like population demographics of any given district and geographical size of different districts.  
+
+
+### Goals for the Project
+
+My goal is to look at voting trends on liberal and conservative parties in two major levels: regional and national. Specifically, my goal is to look at regional trends in specific provinces that have been considered as 'bastions' for different ideologies and compare that to the national trend of the vote shares of these different ideologies to see if a "regionalist voting behaviour" exists, and if it does, whether it remains strong or follows the national trends. 
+
+### Mechanisms for the Project (Specifically Dataset)
+
+While this is one dataset, there are two prominent sheets that act as completely different datasets: 'PR' and 'SMD'. 'PR' is for the proportional representation vote history, and 'SMD' is for all the single-member districts. Before merging these two sheets to create a one coherent dataset on the Korean legislative elections, I plan to collapse the 'PR' sheet. Right now, it is mostly filled with information about different candidates in the PR list for different parties, which is irrelevant to the vote totals and vote shares that I want to look at. After collapsing for just the party names and the vote shares, I then plan to merge these two sheets to create one full dataset that incorporates both district-specific and nationwide data based on party name column. The problem with Korean political parties, however, is they regularly change names --- so it is very hard to keep track of which party represents what ideology, and if there are periods of multi-party systems, specifically which party allies with who (minor parties split from major parties because of factional issues, but they mostly agree on the core beliefs of major issues). To solve for this problem, I will create a new binary variable to determine whether the party is liberal or conservative and artificially create a two-party system for the purpose of looking at trends in voting behaviours over time. This will most likely take a lot of time as I will have to manually check for party names and party history to make sure they properly go into the correct ideology camp. 
+
+
+Once I construct a "two-party system" in my dataset, I will then proceed to creating the total vote share and vote count of different parties in different regions from the 'SMD' data, which at the moment focuses on single-member districts. This is projected to take some time as I am planning to do this for every region since 1988 with every single district per election, and I may have to account for the fact that new 'regions' have been created, since some cities were raised to 'metropolitan city' level (the equivalent of an independent state / District of Columbia in the U.S.), I will have to make sure that those are properly codified. Right now, the column 'region' indicates provinces, but they do not accurately cover the regional groupings that I intend to cover. I will change the code to filter for groups of provinces and cities to match the region (e.g. Gyeongbuk, Gyeongnam, Busan, Daegu, and Ulsan as "Youngnam") levels that are often talked about in the literature on this subject. In the end, once I have vote shares and vote totals by region over different election years, I plan to use that on ggplot to create a time-series plot for both regional and national levels (national using proportional representation data). If the time-series plot was constructed based on parties, that might have been problematic since PR voting and SMD voting do not perfectly align --- but this is corrected by making an artificial two-party system in the dataset, as PR voting often get split amongst parties with same ideologies but with different factions. If all goes well, the ggplot will see national levels, vote shares for "Youngnam" (a conservative bastion), and vote shares for "Honam" (a liberal bastion); consistent vote share levels on different ideologies for different provinces will show that regionalist voting behaviour holds, and any significant/visible movement from any consistent level of vote shares will indicate a departure from regionalist trends. 
